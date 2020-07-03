@@ -1,14 +1,24 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './Player.css';
-import Albums from './Albums';
+import AlbumsContainer from './AlbumsContainer';
+import { loadAlbums } from '../../actions/loadAlbums'
+import { useDispatch } from 'react-redux';
+import Description from './Description';
+import Info from './Info';
 
 const Player = () => {
+
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(loadAlbums())
+    })
+
     return (
-        <div className="container">
-            <div id="top">
-                <Albums />
-            </div>
-            <div id="info"></div>
+        <div className="container-fluid">
+            <AlbumsContainer />
+            <Description />
+            <Info />
         </div>
     );
 };
