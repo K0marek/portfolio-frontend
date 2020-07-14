@@ -1,10 +1,17 @@
-interface CurrentAlbumSongs {
-    dir: string,
-    file: string,
-    size: string
+export interface Song {
+    album: string,
+    name: string,
+    size: string,
+    duration: number
+}
+
+export interface FavouriteSong {
+    song: Song,
+    userId: string
 }
 
 export interface Albums {
     albumsNames: string[],
-    currentAlbumSongs: CurrentAlbumSongs[]
+    currentAlbum: string,
+    currentAlbumSongs: Song[]
 }

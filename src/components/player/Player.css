@@ -27,17 +27,22 @@
     padding: 0;
 }
 
-.albumName {
+.albumLabel {
     padding: 20px;
     width: 100%;
     box-sizing: border-box;
+}
+
+.albumLabel:hover {
+    background-color: #616161;
+    cursor: pointer;
 }
 
 .albumName:hover {
     background-color: #616161;
 }
 
-.albumName a {
+.albumLabel a {
     text-decoration: none;
     color: #F5F5F5;
 }
@@ -63,7 +68,7 @@
     grid-column: 10/11;
 }
 
-.addToFavour {
+.favourite {
     grid-column: 11/12;
 }
 

@@ -1,11 +1,21 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux'
 import { AppState } from '../../store';
 import SongLabel from './SongLabel';
+import { Song } from '../../types/Albums';
 
 const Description = () => {
 
-    const { currentAlbumSongs } = useSelector((state: AppState) => state.albumReducer)
+    const { currentAlbumSongs, currentAlbum } = useSelector((state: AppState) => state.albumReducer)
+    const { token, userPlaylist } = useSelector((state: AppState) => state.signReducer)
+
+    const [favourite, setFavourite] = useState<Song[]>([])
+
+    useEffect(() => {
+        const favourite = userPlaylist.filter(item => item.album === currentAlbum)
+        setFavourite(favourite)
+    }, [userPlaylist, currentAlbum])
+
 
     return (
         <div id="description">
@@ -14,12 +24,14 @@ const Description = () => {
                 <div className="title">Title</div>
                 <div className="album">Album</div>
                 <div className="time"><i className="material-icons">timer</i></div>
-                <div className="addToFavourite"><i className="material-icons">add</i></div>
-                <div className="play"><i className="material-icons">play_circle_outline</i></div>
+                <div className="favourite"><i className="material-icons">playlist_add</i></div>
+                <div className="play"><i className="material-icons">play_circle_filled</i></div>
             </div>
-            {currentAlbumSongs.map((songs, index) => {
-                const { dir, file, size } = songs
-                return <SongLabel album={dir} name={file} size={size} id={index} key={index} />
+            {currentAlbumSongs.map((song, index) => {
+                const { album, name, size, duration } = song
+                let isFavourite = favourite.some(item => item.album === album && item.name === name)
+                if (currentAlbum === 'playlist') isFavourite = true
+                return <SongLabel album={album} name={name} size={size} duration={duration} id={index} favourite={isFavourite} key={index} />
             })}
         </div>
     );

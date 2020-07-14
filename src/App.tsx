@@ -4,6 +4,8 @@ import './App.css';
 import Navbar from './components/layout/Navbar';
 import Dashboard from './components/main/Dashboard';
 import Player from './components/player/Player';
+import SignIn from './components/main/SignIn';
+import SignUp from './components/main/SignUp';
 
 const App = () => {
   return (
@@ -13,6 +15,8 @@ const App = () => {
         <Switch>
           <Route exact path='/' component={Dashboard} />
           <Route path='/player' component={Player} />
+          <Route path='/signin' component={SignIn} />
+          <Route path='/signup' component={SignUp} />
         </Switch>
       </div>
     </BrowserRouter>

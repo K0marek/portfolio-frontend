@@ -1,7 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { AppState } from '../../store';
+import SignInLinks from './SignInLinks';
+import SignOutLinks from './SignOutLinks';
 
 const Navbar = () => {
+
+    const { token } = useSelector((state: AppState) => state.signReducer)
+    const links = token ? <SignInLinks token={token} /> : <SignOutLinks />
+
     return (
         <div className="navbar-fixed">
             <nav className="nav-wrapper">
@@ -10,8 +18,7 @@ const Navbar = () => {
                     <li><Link to='/player'>Player</Link></li>
                 </ul>
                 <ul className="right">
-                    <li><Link to="/signin">Sign In</Link></li>
-                    <li><Link to="/signup">Sign Up</Link></li>
+                    {links}
                 </ul>
             </nav>
         </div>
