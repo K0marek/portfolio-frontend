@@ -13,7 +13,10 @@ export const loadAlbums = () => async (dispatch: Dispatch<AppActions>) => {
     const object: Albums = {
         albumsNames: json.dirs,
         currentAlbum: json.dirs[0],
-        currentAlbumSongs: json.files
+        currentAlbumSongs: json.files,
+        currentPlaySong: '',
+        isPlaying: false,
+        volume: 40
     }
     await dispatch(albumLoaded(object))
 }

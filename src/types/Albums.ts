@@ -13,5 +13,8 @@ export interface FavouriteSong {
 export interface Albums {
     albumsNames: string[],
     currentAlbum: string,
-    currentAlbumSongs: Song[]
+    currentAlbumSongs: Song[],
+    currentPlaySong: string,
+    isPlaying: boolean,
+    volume: number
 }

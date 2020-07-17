@@ -1,7 +1,6 @@
 import axios from 'axios'
 import { AppActions } from "../../types/actions"
 import { Dispatch } from "redux"
-import { User } from "../../types/User"
 
 const signedUpSuccess = (message: string): AppActions => ({
     type: 'SIGN_UP_SUCCESS',

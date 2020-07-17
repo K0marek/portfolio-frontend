@@ -4,7 +4,10 @@ import { AlbumsActionTypes } from "../types/actions"
 const initState: Albums = {
     albumsNames: [],
     currentAlbum: '',
-    currentAlbumSongs: []
+    currentAlbumSongs: [],
+    currentPlaySong: '',
+    isPlaying: false,
+    volume: 40
 }
 
 const albumReducer = (state = initState, action: AlbumsActionTypes): Albums => {
@@ -27,7 +30,19 @@ const albumReducer = (state = initState, action: AlbumsActionTypes): Albums => {
             }
         case 'PLAY_SONG':
             return {
-                ...state
+                ...state,
+                currentPlaySong: action.currentSong,
+                isPlaying: true
+            }
+        case 'PAUSE_SONG':
+            return {
+                ...state,
+                isPlaying: false
+            }
+        case 'CHANGE_VOLUME':
+            return {
+                ...state,
+                volume: action.volume
             }
         default:
             return { ...state }

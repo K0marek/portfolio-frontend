@@ -4,6 +4,8 @@ export const LOAD_ALBUM_SUCCESS = 'LOAD_ALBUM_SUCCESS'
 export const CHANGE_CURRENT_ALBUM = 'CHANGE_CURRENT_ALBUM'
 export const SHOW_PLAYLIST = 'SHOW_PLAYLIST'
 export const PLAY_SONG = 'PLAY_SONG'
+export const PAUSE_SONG = 'PAUSE_SONG'
+export const CHANGE_VOLUME = 'CHANGE_VOLUME'
 
 export const ADD_TO_FAVOURITE_SUCCESS = 'ADD_TO_FAVOURITE_SUCCESS'
 export const REMOVE_FROM_FAVOURITE_SUCCESS = 'REMOVE_FROM_FAVOURITE_SUCCESS'
@@ -36,6 +38,16 @@ export interface ShowPlaylistAction {
 
 export interface PlaySongAction {
     type: typeof PLAY_SONG,
+    currentSong: string
+}
+
+export interface PauseSongAction {
+    type: typeof PAUSE_SONG
+}
+
+export interface ChangeVolumeAction {
+    type: typeof CHANGE_VOLUME,
+    volume: number
 }
 
 export interface AddToFavouriteSuccessAcction {
@@ -81,7 +93,7 @@ export interface SignOutErrorAction {
     message: string
 }
 
-export type AlbumsActionTypes = LoadAlbumSuccessAction | ChangeCurrentAlbumAction | ShowPlaylistAction | PlaySongAction
+export type AlbumsActionTypes = LoadAlbumSuccessAction | ChangeCurrentAlbumAction | ShowPlaylistAction | PlaySongAction | PauseSongAction | ChangeVolumeAction
 
 export type SigningActionTypes = SignUpSuccessAction | SignUpErrorAction | SignInSuccessAction | SignInErrorAction | SignOutSuccessAction | SignOutErrorAction | AddToFavouriteSuccessAcction | RemovedFromFavouriteSuccessAcction
 

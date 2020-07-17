@@ -5,6 +5,7 @@ import { AppState } from '../../store';
 import { addToFavourite } from '../../actions/playerActions/addToFavourite';
 import { removeFromFavourite } from '../../actions/playerActions/removeFromFavourite';
 import { Song, FavouriteSong } from '../../types/Albums';
+import { pauseSong } from '../../actions/playerActions/pauseSong';
 
 interface SongProps {
     album: string,
@@ -28,11 +29,29 @@ const SongLabel = ({ album, name, size, duration, id, favourite }: SongProps) =>
     const seconds: number = Math.ceil(duration) % 60
     const durationString: string = `${minutes}:${seconds < 10 ? '0' + seconds : seconds}`
 
+    const [thisPlaying, setThisPlaying] = useState(false)
+    const { isPlaying, currentAlbum, currentPlaySong } = useSelector((state: AppState) => state.albumReducer)
+
+    useEffect(() => {
+        const nr = id < 9 ? '0' + (id + 1).toString() : id + 1
+        const fullName = `${nr} ${songName}`
+        if (isPlaying === true) {
+            if (currentAlbum === album && currentPlaySong === fullName)
+                setThisPlaying(true)
+            else
+                setThisPlaying(false)
+        } else setThisPlaying(false)
+    }, [currentPlaySong, isPlaying])
+
     const dispatch = useDispatch()
     const { token, userId } = useSelector((state: AppState) => state.signReducer)
 
     const handlePlay = () => {
-        dispatch(playSong(album, songName, id))
+        if (thisPlaying) {
+            dispatch(pauseSong())
+        } else {
+            dispatch(playSong(songName, id))
+        }
     }
 
     const handleFavouriteClick = () => {
@@ -62,7 +81,7 @@ const SongLabel = ({ album, name, size, duration, id, favourite }: SongProps) =>
             <div className="album">{album}</div>
             <div className="time">{durationString}</div>
             <div className="favourite"><i className="material-icons" onClick={handleFavouriteClick}>{isFavourite ? 'delete_sweep' : 'favorite_border'}</i></div>
-            <div className="play"><i className="material-icons" onClick={handlePlay}>play_circle_outline</i></div>
+            <div className="play"><i className="material-icons" onClick={handlePlay}>{thisPlaying ? 'pause_circle_outline' : 'play_circle_outline'}</i></div>
         </div>
     );
 };
