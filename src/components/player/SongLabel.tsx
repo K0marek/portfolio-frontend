@@ -4,7 +4,7 @@ import { playSong } from '../../actions/playerActions/playSong'
 import { AppState } from '../../store';
 import { addToFavourite } from '../../actions/playerActions/addToFavourite';
 import { removeFromFavourite } from '../../actions/playerActions/removeFromFavourite';
-import { Song, FavouriteSong } from '../../types/Albums';
+import { Song, FavouriteSong } from '../../types/Player';
 import { pauseSong } from '../../actions/playerActions/pauseSong';
 
 interface SongProps {
@@ -30,13 +30,14 @@ const SongLabel = ({ album, name, size, duration, id, favourite }: SongProps) =>
     const durationString: string = `${minutes}:${seconds < 10 ? '0' + seconds : seconds}`
 
     const [thisPlaying, setThisPlaying] = useState(false)
-    const { isPlaying, currentAlbum, currentPlaySong } = useSelector((state: AppState) => state.albumReducer)
+    const { isPlaying, currentSelectedAlbum, currentPlaySong } = useSelector((state: AppState) => state.albumReducer)
+    const { currentAlbumSongs } = useSelector((state: AppState) => state.albumReducer)
 
     useEffect(() => {
         const nr = id < 9 ? '0' + (id + 1).toString() : id + 1
         const fullName = `${nr} ${songName}`
         if (isPlaying === true) {
-            if (currentAlbum === album && currentPlaySong === fullName)
+            if (currentSelectedAlbum === album && currentPlaySong === fullName)
                 setThisPlaying(true)
             else
                 setThisPlaying(false)
@@ -50,7 +51,7 @@ const SongLabel = ({ album, name, size, duration, id, favourite }: SongProps) =>
         if (thisPlaying) {
             dispatch(pauseSong())
         } else {
-            dispatch(playSong(songName, id))
+            dispatch(playSong(songName, id, album, currentAlbumSongs))
         }
     }
 

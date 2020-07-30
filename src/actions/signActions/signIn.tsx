@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { AppActions } from "../../types/actions"
 import { Dispatch } from "redux"
-import { Song } from '../../types/Albums'
+import { Song } from '../../types/Player'
 
 const signInSuccess = (message: string, token: string, userId: string, userPlaylist: Song[]): AppActions => ({
     type: 'SIGN_IN_SUCCESS',

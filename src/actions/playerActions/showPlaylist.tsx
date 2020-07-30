@@ -1,11 +1,11 @@
 import { AppActions } from "../../types/actions"
 import { Dispatch } from "redux"
-import { Song } from "../../types/Albums"
+import { Song } from "../../types/Player"
 
 const showPlaylistAction = (userPlaylist: Song[]): AppActions => ({
     type: 'SHOW_PLAYLIST',
     userPlaylist,
-    currentAlbum: 'playlist'
+    currentSelectedAlbum: 'playlist'
 })
 
 export const showPlaylist = (userPlaylist: Song[]) => (dispatch: Dispatch<AppActions>) => {

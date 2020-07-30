@@ -10,11 +10,13 @@ export interface FavouriteSong {
     userId: string
 }
 
-export interface Albums {
+export interface Player {
     albumsNames: string[],
-    currentAlbum: string,
+    currentSelectedAlbum: string,
     currentAlbumSongs: Song[],
     currentPlaySong: string,
+    currentSongAlbum: string,
+    currentPlaySongAlbumSongs: Song[],
     isPlaying: boolean,
     volume: number
 }

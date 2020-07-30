@@ -1,4 +1,4 @@
-import { Song } from './Albums';
+import { Song } from './Player';
 
 export interface User {
     success: boolean,

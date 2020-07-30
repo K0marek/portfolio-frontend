@@ -1,7 +1,7 @@
 import { AppActions } from "../../types/actions"
 import { Dispatch } from "redux"
 import axios from "axios"
-import { FavouriteSong, Song } from "../../types/Albums"
+import { FavouriteSong, Song } from "../../types/Player"
 
 const addedToFavourite = (userPlaylist: Song[]): AppActions => ({
     type: 'ADD_TO_FAVOURITE_SUCCESS',

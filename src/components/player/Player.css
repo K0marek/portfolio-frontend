@@ -27,7 +27,7 @@
     grid-column: 1/4;
 }
 
-#playerControl {
+#controls {
     grid-column: 4/10;
 }
 
@@ -92,4 +92,28 @@
 .songLabel {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
+}
+
+.duration-bar {
+    width: 100%;
+    height: 20px;
+    background-color: black;
+}
+
+.progress {
+    height: 20px;
+    background-color: white;
+}
+
+.selected {
+    color: green;
+}
+
+.material-icons {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }

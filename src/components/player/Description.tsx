@@ -2,19 +2,19 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux'
 import { AppState } from '../../store';
 import SongLabel from './SongLabel';
-import { Song } from '../../types/Albums';
+import { Song } from '../../types/Player';
 
 const Description = () => {
 
-    const { currentAlbumSongs, currentAlbum } = useSelector((state: AppState) => state.albumReducer)
+    const { currentAlbumSongs, currentSelectedAlbum } = useSelector((state: AppState) => state.albumReducer)
     const { token, userPlaylist } = useSelector((state: AppState) => state.signReducer)
 
     const [favourite, setFavourite] = useState<Song[]>([])
 
     useEffect(() => {
-        const favourite = userPlaylist.filter(item => item.album === currentAlbum)
+        const favourite = userPlaylist.filter(item => item.album === currentSelectedAlbum)
         setFavourite(favourite)
-    }, [userPlaylist, currentAlbum])
+    }, [userPlaylist, currentSelectedAlbum])
 
 
     return (
@@ -27,10 +27,10 @@ const Description = () => {
                 <div className="favourite"><i className="material-icons">playlist_add</i></div>
                 <div className="play"><i className="material-icons">play_circle_filled</i></div>
             </div>
-            {currentAlbumSongs.map((song, index) => {
+            {currentAlbumSongs.map((song: Song, index: number) => {
                 const { album, name, size, duration } = song
                 let isFavourite = favourite.some(item => item.album === album && item.name === name)
-                if (currentAlbum === 'playlist') isFavourite = true
+                if (currentSelectedAlbum === 'playlist') isFavourite = true
                 return <SongLabel album={album} name={name} size={size} duration={duration} id={index} favourite={isFavourite} key={index} />
             })}
         </div>

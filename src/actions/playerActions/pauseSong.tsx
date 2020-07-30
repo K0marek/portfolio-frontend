@@ -5,6 +5,6 @@ const songPaused = (): AppActions => ({
     type: 'PAUSE_SONG',
 })
 
-export const pauseSong = () => async (dispatch: Dispatch<AppActions>) => {
+export const pauseSong = () => (dispatch: Dispatch<AppActions>) => {
     dispatch(songPaused())
 }

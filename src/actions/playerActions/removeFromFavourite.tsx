@@ -1,7 +1,7 @@
 import { AppActions } from "../../types/actions"
 import { Dispatch } from "redux"
 import axios from "axios"
-import { FavouriteSong, Song } from "../../types/Albums"
+import { FavouriteSong, Song } from "../../types/Player"
 
 const removedFromFavourite = (userPlaylist: Song[]): AppActions => ({
     type: 'REMOVE_FROM_FAVOURITE_SUCCESS',

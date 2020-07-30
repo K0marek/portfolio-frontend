@@ -1,4 +1,4 @@
-import { Song, Albums, FavouriteSong } from "./Albums";
+import { Song } from "./Player";
 
 export const LOAD_ALBUM_SUCCESS = 'LOAD_ALBUM_SUCCESS'
 export const CHANGE_CURRENT_ALBUM = 'CHANGE_CURRENT_ALBUM'
@@ -6,6 +6,8 @@ export const SHOW_PLAYLIST = 'SHOW_PLAYLIST'
 export const PLAY_SONG = 'PLAY_SONG'
 export const PAUSE_SONG = 'PAUSE_SONG'
 export const CHANGE_VOLUME = 'CHANGE_VOLUME'
+export const PREVIOUS_SONG = 'PREVIOUS_SONG'
+export const NEXT_SONG = 'NEXT_SONG'
 
 export const ADD_TO_FAVOURITE_SUCCESS = 'ADD_TO_FAVOURITE_SUCCESS'
 export const REMOVE_FROM_FAVOURITE_SUCCESS = 'REMOVE_FROM_FAVOURITE_SUCCESS'
@@ -20,25 +22,29 @@ export const SIGN_OUT_SUCCESS = 'SIGN_OUT_SUCCESS'
 export const SIGN_OUT_ERROR = 'SIGN_OUT_ERROR'
 
 export interface LoadAlbumSuccessAction {
-    type: typeof LOAD_ALBUM_SUCCESS
-    albums: Albums
+    type: typeof LOAD_ALBUM_SUCCESS,
+    albumNames: string[],
+    currentSelectedAlbum: string,
+    currentAlbumSongs: Song[]
 }
 
 export interface ChangeCurrentAlbumAction {
     type: typeof CHANGE_CURRENT_ALBUM,
-    currentAlbum: string,
+    currentSelectedAlbum: string,
     currentAlbumSongs: Song[]
 }
 
 export interface ShowPlaylistAction {
     type: typeof SHOW_PLAYLIST
     userPlaylist: Song[],
-    currentAlbum: string
+    currentSelectedAlbum: string
 }
 
 export interface PlaySongAction {
     type: typeof PLAY_SONG,
-    currentSong: string
+    currentSong: string,
+    currentSongAlbum: string,
+    currentPlaySongAlbumSongs: Song[]
 }
 
 export interface PauseSongAction {
@@ -48,6 +54,16 @@ export interface PauseSongAction {
 export interface ChangeVolumeAction {
     type: typeof CHANGE_VOLUME,
     volume: number
+}
+
+export interface PreviousSongAction {
+    type: typeof PREVIOUS_SONG,
+    id: number
+}
+
+export interface NextSongAction {
+    type: typeof NEXT_SONG,
+    id: number
 }
 
 export interface AddToFavouriteSuccessAcction {
@@ -93,7 +109,7 @@ export interface SignOutErrorAction {
     message: string
 }
 
-export type AlbumsActionTypes = LoadAlbumSuccessAction | ChangeCurrentAlbumAction | ShowPlaylistAction | PlaySongAction | PauseSongAction | ChangeVolumeAction
+export type AlbumsActionTypes = LoadAlbumSuccessAction | ChangeCurrentAlbumAction | ShowPlaylistAction | PlaySongAction | PauseSongAction | ChangeVolumeAction | PreviousSongAction | NextSongAction
 
 export type SigningActionTypes = SignUpSuccessAction | SignUpErrorAction | SignInSuccessAction | SignInErrorAction | SignOutSuccessAction | SignOutErrorAction | AddToFavouriteSuccessAcction | RemovedFromFavouriteSuccessAcction
 

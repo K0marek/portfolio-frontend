@@ -4,11 +4,11 @@ import { AppState } from '../../store';
 
 const CurrentSongInfo = () => {
 
-    const { currentAlbum, currentPlaySong } = useSelector((state: AppState) => state.albumReducer)
+    const { currentSongAlbum, currentPlaySong } = useSelector((state: AppState) => state.albumReducer)
 
     return (
         <div id="currentSongInfo">
-            <p>{currentAlbum}</p>
+            <p>{currentSongAlbum}</p>
             <p>{currentPlaySong}</p>
         </div>
     );

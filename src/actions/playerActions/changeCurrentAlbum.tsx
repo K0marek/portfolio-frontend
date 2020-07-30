@@ -1,11 +1,11 @@
 import { AppActions } from "../../types/actions"
 import { Dispatch } from "redux"
 import axios from 'axios'
-import { Song } from "../../types/Albums"
+import { Song } from "../../types/Player"
 
 const currentAlbumChanged = (currentAlbumSongs: Song[], albumName: string): AppActions => ({
     type: 'CHANGE_CURRENT_ALBUM',
-    currentAlbum: albumName,
+    currentSelectedAlbum: albumName,
     currentAlbumSongs
 })
 
