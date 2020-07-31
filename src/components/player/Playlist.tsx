@@ -15,7 +15,7 @@ const Playlist = () => {
 
     return (
         <li className="albumLabel" onClick={loadPlaylist}>
-            <a>My music</a>
+            My music
         </li>
     );
 };

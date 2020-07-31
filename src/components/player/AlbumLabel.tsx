@@ -16,7 +16,7 @@ const AlbumLabel = ({ albumName }: AlbumLabelProps) => {
 
     return (
         <li className="albumLabel" onClick={handleChangeCurrentAlbum}>
-            <a>{albumName}</a>
+            {albumName}
         </li>
     );
 };

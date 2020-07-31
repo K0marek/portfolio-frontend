@@ -17,7 +17,7 @@ const SignInLinks = ({ token }: SignInLinksProps) => {
 
     return (
         <>
-            <li><a onClick={handleSignOut}>Signout</a></li>
+            <li><div onClick={handleSignOut}>Signout</div></li>
             <li><NavLink to='/profile'>Profile</NavLink></li>
         </>
     );
