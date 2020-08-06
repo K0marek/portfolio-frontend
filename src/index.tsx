@@ -8,6 +8,7 @@ import { Provider } from 'react-redux';
 import thunk from 'redux-thunk'
 import rootReducer from './reducers/rootReducer';
 import './FontAwesomeLibrary'
+import 'materialize-css/dist/css/materialize.min.css'
 
 const store = createStore(rootReducer, applyMiddleware(thunk))
 

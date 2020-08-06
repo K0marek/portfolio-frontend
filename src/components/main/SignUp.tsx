@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { signUp } from '../../actions/signActions/signUp';
 import { AppState } from '../../store';
@@ -28,12 +28,18 @@ const SignUp = () => {
     return (
         <div className="signUp">
             <form onSubmit={handleSubmit}>
-                <label htmlFor="username">Username</label>
-                <input type="text" name="username" value={username} onChange={handleUsernameChange} />
-                <label htmlFor="email">Email</label>
-                <input type="text" name="email" value={email} onChange={handleEmailChange} />
-                <label htmlFor="password">Password</label>
-                <input type="password" name="password" value={password} onChange={handlePasswordChange} />
+                <div className="input-field">
+                    <label htmlFor="username">Username</label>
+                    <input type="text" name="username" value={username} onChange={handleUsernameChange} />
+                </div>
+                <div className="input-field">
+                    <label htmlFor="email">Email</label>
+                    <input type="text" name="email" value={email} onChange={handleEmailChange} />
+                </div>
+                <div className="input-field">
+                    <label htmlFor="password">Password</label>
+                    <input type="password" name="password" value={password} onChange={handlePasswordChange} />
+                </div>
                 <input type="submit" value="Sign Up" />
             </form>
             <div className="message">{message}</div>

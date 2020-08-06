@@ -7,7 +7,7 @@ import { Song } from '../../types/Player';
 const Description = () => {
 
     const { currentAlbumSongs, currentSelectedAlbum } = useSelector((state: AppState) => state.albumReducer)
-    const { token, userPlaylist } = useSelector((state: AppState) => state.signReducer)
+    const { userPlaylist } = useSelector((state: AppState) => state.signReducer)
 
     const [favourite, setFavourite] = useState<Song[]>([])
 

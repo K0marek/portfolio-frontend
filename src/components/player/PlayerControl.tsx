@@ -66,7 +66,7 @@ const PlayerControl = () => {
         }
         audio.addEventListener('ended', dispatchNextSong)
         return () => audio.removeEventListener('ended', dispatchNextSong)
-    }, [currentPlaySong, isLoop])
+    }, [currentPlaySong, isLoop, dispatch])
 
     const handlePlayClick = () => {
         if (isPlaying) {

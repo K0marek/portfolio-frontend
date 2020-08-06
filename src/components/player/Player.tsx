@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import './Player.css';
 import AlbumsContainer from './AlbumsContainer';
 import { loadAlbums } from '../../actions/playerActions/loadAlbums'
@@ -13,7 +13,7 @@ const Player = () => {
 
     useEffect(() => {
         dispatch(loadAlbums())
-    }, [])
+    }, [dispatch])
 
     return (
         <div className="container-fluid">

@@ -28,11 +28,15 @@ const SignIn = () => {
     return (
         <div className="signIn">
             <form onSubmit={handleSubmit}>
-                <label htmlFor="username">Username</label>
-                <input type="text" name="username" value={username} onChange={handleUsernameChange} />
-                <label htmlFor="password">Password</label>
-                <input type="password" name="password" value={password} onChange={handlePasswordChange} />
-                <input type="submit" value="Sign In" />
+                <div className="input-field">
+                    <label htmlFor="username">Username</label>
+                    <input type="text" name="username" value={username} onChange={handleUsernameChange} />
+                </div>
+                <div className="input-field">
+                    <label htmlFor="password">Password</label>
+                    <input type="password" name="password" value={password} onChange={handlePasswordChange} />
+                </div>
+                <button className="btn waves-effect blue darken-4" type="submit" name="action">Sign in</button>
             </form>
         </div>
     );

@@ -33,7 +33,7 @@ const SongLabel = ({ album, name, size, duration, id, favourite }: SongProps) =>
     const { isPlaying, currentSelectedAlbum, currentPlaySong } = useSelector((state: AppState) => state.albumReducer)
     const { currentAlbumSongs } = useSelector((state: AppState) => state.albumReducer)
 
-    useEffect(() => {
+    useEffect(() => { // change icon play/pause
         const nr = id < 9 ? '0' + (id + 1).toString() : id + 1
         const fullName = `${nr} ${songName}`
         if (isPlaying === true) {
@@ -42,7 +42,7 @@ const SongLabel = ({ album, name, size, duration, id, favourite }: SongProps) =>
             else
                 setThisPlaying(false)
         } else setThisPlaying(false)
-    }, [currentPlaySong, isPlaying])
+    }, [currentPlaySong, isPlaying, album, currentSelectedAlbum, id, songName])
 
     const dispatch = useDispatch()
     const { token, userId } = useSelector((state: AppState) => state.signReducer)

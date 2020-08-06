@@ -1,9 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import Skill from './Skill';
+import { motion } from 'framer-motion'
+import { useEntranceAnimation } from '../../hooks/useEntranceAnimation';
 
 const Skills = () => {
 
-    const [skills, setSkills] = useState([{
+    const skillsElement = useRef<HTMLDivElement>(null)
+
+    const shouldShow = useEntranceAnimation(skillsElement)
+
+    const [skills] = useState([{
         name: 'HTML',
         type: 'icon',
         src: 'html5',
@@ -22,7 +28,7 @@ const Skills = () => {
         name: 'TypeScript',
         type: 'img',
         src: 'ts.png',
-        color: 'rgb(240, 219, 79)'
+        color: 'rgb(0, 122, 204)'
     }, {
         name: 'React/Redux',
         type: 'icon',
@@ -42,7 +48,7 @@ const Skills = () => {
         name: 'Materialize',
         type: 'img',
         src: 'materialize.png',
-        color: 'rgb(205, 103, 153)'
+        color: 'rgb(235, 109, 117)'
     }, {
         name: 'Bootstap',
         type: 'icon',
@@ -67,10 +73,16 @@ const Skills = () => {
 
     return (
         <section id="skills">
-            <h1>Skills</h1>
-            <div className="skills-container">
-                {skills.map(({ name, type, src, color }, index) => <Skill name={name} type={type} src={src} color={color} key={index} />)}
-            </div>
+            <motion.div
+                ref={skillsElement}
+                initial={{ x: '-100vw' }}
+                animate={{ x: shouldShow ? 0 : '-100vw' }}
+            >
+                <h1>Skills</h1>
+                <div className="skills-container">
+                    {skills.map(({ name, type, src, color }, index) => <Skill name={name} type={type} src={src} color={color} key={index} />)}
+                </div>
+            </motion.div>
         </section>
     );
 };

@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { motion } from 'framer-motion'
+
 interface SkillProps {
     name: string,
     type: string,
@@ -16,13 +18,22 @@ const Skill = ({ name, type, src, color }: SkillProps) => {
             setContent(<FontAwesomeIcon className='skill-icon' icon={['fab', src]} />)
         else if (type === 'img')
             setContent(<img className='skill-icon' alt={name} src={require(`../../images/${src}`)} />)
-    }, [])
+    }, [name, src, type])
 
     return (
-        <div className="skill" style={{ color }}>
+        <motion.div
+            className="skill"
+            style={{ color }}
+            whileHover={{
+                scale: 1.3,
+                textShadow: '0px 0px 18px rgba(0, 0, 0, 0.6)'
+            }}
+            drag
+            dragConstraints={{ left: 0, top: 0, right: 0, bottom: 0 }}
+        >
             {content}
             <p className='caption'>{name}</p>
-        </div>
+        </motion.div>
     );
 };
 

@@ -13,7 +13,7 @@ const AudioPlayer = () => {
         setAudioSrc(src)
         const audio: HTMLAudioElement = (document.getElementById('audioPlayer') as HTMLAudioElement)
         audio.load()
-    }, [currentPlaySong])
+    }, [currentSongAlbum, currentPlaySong])
 
     useEffect(() => {
         const audio: HTMLAudioElement = (document.getElementById('audioPlayer') as HTMLAudioElement)
